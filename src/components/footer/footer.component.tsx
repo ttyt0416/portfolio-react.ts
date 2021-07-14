@@ -51,8 +51,8 @@ const Footer: React.FC = () => {
             placeholder="Email"
             className="footer__form-input footer__form-email"
           />
-          <input
-            type="text"
+          <textarea
+            // type="text"
             placeholder="Message"
             className="footer__form-input footer__form-text"
           />
