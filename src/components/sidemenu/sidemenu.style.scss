@@ -6,14 +6,44 @@
       position: fixed;
       top: 0;
       right: 0;
+      margin-top: 4rem;
+      margin-right: 7rem;
+      z-index: 10;
+
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+    }
+
+    &__open,
+    &__close {
+      color: black;
+      transform: scale(4);
+    }
+
+    &__menuContainer {
+      position: fixed;
+      right: 0;
+      top: 0;
       width: 100%;
       height: 100%;
-      &-line {
-        color: black;
+      background-color: white;
+      z-index: 8;
+      opacity: 0.7;
 
-        width: 3px;
-        height: 1px;
+      &-disappear {
+        display: none;
       }
+    }
+
+    &__menus {
+      position: fixed;
+      right: 0;
+      top: 0;
+      margin-top: 0;
+      width: 30rem;
+      height: 100%;
+      background-color: black;
     }
   }
 }

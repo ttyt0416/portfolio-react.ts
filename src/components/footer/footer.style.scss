@@ -5,8 +5,9 @@
     position: absolute;
     bottom: 0;
     left: 0;
+    padding-bottom: 10rem;
     width: 100%;
-    height: 20rem;
+    height: 30rem;
     display: flex;
     flex-direction: row-reverse;
 
@@ -70,6 +71,7 @@
         border: none;
         border-bottom: 1px solid grey;
         padding-right: 1rem;
+        padding-bottom: 1rem;
 
         font-size: 1rem;
         font-weight: 300;
@@ -99,7 +101,9 @@
 
       &-submit {
         width: 10%;
+        margin-bottom: 4rem;
         margin-top: 1.5rem;
+        padding: 1rem 0;
         border: none;
 
         display: inline-block;
@@ -108,21 +112,20 @@
         text-align: center;
         color: white;
         border-radius: 4px;
-        padding: 1rem 0;
 
         letter-spacing: 0.2rem;
         font-weight: 700;
 
-        translate: all 1s;
+        transition: all 0.5s;
 
         &:hover {
           background-color: pink;
         }
       }
-    }
 
-    &__subtitle {
-      margin-top: 4rem;
+      &__subtitle {
+        color: grey;
+      }
     }
   }
 }

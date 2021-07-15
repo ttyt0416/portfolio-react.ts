@@ -59,7 +59,7 @@ const Footer: React.FC = () => {
           <input type="submit" value="SEND" className="footer__form-submit" />
         </form>
         <p className="footer__subtitle">
-          © Untitled. All rights reservedDesign: HTML5 UP
+          © Untitled. All rights reserved Design: HTML5 UP
         </p>
       </div>
     </div>
