@@ -28,6 +28,7 @@ const Sidemenu: React.FC = () => {
             ? "sidemenu__menuContainer"
             : "sidemenu__menuContainer-disappear"
         }
+        onClick={menuToggle}
       >
         <ul className="sidemenu__menus">
           <li className="sidemenu__menu">Home</li>

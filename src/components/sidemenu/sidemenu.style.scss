@@ -15,24 +15,34 @@
       justify-content: space-around;
     }
 
-    &__open,
+    &__open {
+      animation: moveToRight 0.5s forwards;
+    }
+
     &__close {
-      color: black;
-      transform: scale(4);
+      animation: moveToLeft 0.5s forwards;
     }
 
     &__menuContainer {
       position: fixed;
+      display: block;
       right: 0;
       top: 0;
       width: 100%;
       height: 100%;
       background-color: white;
-      z-index: 8;
+      z-index: 7;
       opacity: 0.7;
+      animation: moveInRight 0.5s;
 
       &-disappear {
-        display: none;
+        position: fixed;
+        right: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 8;
+        animation: disappearToRight 0.5s forwards;
       }
     }
 
@@ -44,6 +54,21 @@
       width: 30rem;
       height: 100%;
       background-color: black;
+      list-style: none;
+      padding-top: 1.5rem;
+      z-index: 9;
+    }
+
+    &__menu {
+      color: white;
+      font-size: 1.7rem;
+      font-weight: 500;
+      border-bottom: 1px solid white;
+      padding-right: 2rem;
+
+      &:not(:first-child) {
+        margin-top: 2rem;
+      }
     }
   }
 }
