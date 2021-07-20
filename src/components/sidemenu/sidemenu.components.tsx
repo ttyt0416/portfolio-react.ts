@@ -3,6 +3,8 @@ import "./sidemenu.style.scss";
 
 import { useState } from "react";
 
+import { Link } from "react-router-dom";
+
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTimes, faBars } from "@fortawesome/free-solid-svg-icons";
 
@@ -31,9 +33,18 @@ const Sidemenu: React.FC = () => {
         onClick={menuToggle}
       >
         <ul className="sidemenu__menus">
-          <li className="sidemenu__menu">Home</li>
-          <li className="sidemenu__menu">Sample1</li>
-          <li className="sidemenu__menu">Sample2</li>
+          <li className="sidemenu__menu">
+            <Link to="/">Home</Link>
+          </li>
+          <li className="sidemenu__menu">
+            <Link to="/">Sample1</Link>
+          </li>
+          <li className="sidemenu__menu">
+            <Link to="/">Sample2</Link>
+          </li>
+          <li className="sidemenu__menu">
+            <Link to="/community">Community</Link>
+          </li>
         </ul>
       </div>
     </>

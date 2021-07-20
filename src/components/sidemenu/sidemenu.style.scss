@@ -23,9 +23,16 @@
       animation: moveToLeft 0.5s forwards;
     }
 
+    &__open,
+    &__close {
+      &:hover {
+        cursor: pointer;
+      }
+    }
+
     &__menuContainer {
       position: fixed;
-      display: block;
+      // display: block;
       right: 0;
       top: 0;
       width: 100%;
@@ -63,8 +70,13 @@
       color: white;
       font-size: 1.7rem;
       font-weight: 500;
-      border-bottom: 1px solid white;
       padding-right: 2rem;
+      cursor: pointer;
+
+      & > * {
+        text-decoration: none;
+        color: white;
+      }
 
       &:not(:first-child) {
         margin-top: 2rem;
