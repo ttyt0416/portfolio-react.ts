@@ -25,6 +25,7 @@ class Auth {
     try {
       await axios.post(url, body);
     } catch (error) {
+      console.log(error);
       throw error;
     }
   }

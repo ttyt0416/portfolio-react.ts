@@ -45,6 +45,9 @@ const Sidemenu: React.FC = () => {
           <li className="sidemenu__menu">
             <Link to="/community">Community</Link>
           </li>
+          <li className="sidemenu__menu">
+            <Link to="/auth">Sign in</Link>
+          </li>
         </ul>
       </div>
     </>

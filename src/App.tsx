@@ -6,6 +6,7 @@ import { Route, Switch } from "react-router-dom";
 import Homepage from "./pages/homepage/homepage.component";
 import CommunityPage from "./pages/communitypage/communitypage.components";
 import Postpage from "./pages/postpage/postpage.components";
+import Authpage from "./pages/authpage/authpage.components";
 
 import Homelink from "./components/homelink/homelink.component";
 import Footer from "./components/footer/footer.component";
@@ -21,6 +22,7 @@ const App: React.FC = () => {
           <Route exact path="/" component={Homepage} />
           <Route exact path="/community" component={CommunityPage} />
           <Route exact path="/post" component={Postpage} />
+          <Route exact path="/auth" component={Authpage} />
         </Switch>
       </div>
       <div className="app__footer">
