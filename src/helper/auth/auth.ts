@@ -11,31 +11,33 @@ class Auth {
   //     this.userId = userId;
   //   }
 
-  static async authenticate(
-    email: string,
-    password: string,
-    urlSegment: string
-  ) {
-    const url = `https://identitytoolkit.googleapis.com/v1/${urlSegment}?key=AIzaSyCnbsMZ2TU8IexWXHcgC-h7mOyEnyrGLn8`;
+  static async authenticate(email: string, password: string) {
+    // const url = `https://identitytoolkit.googleapis.com/v1/${urlSegment}?key=AIzaSyCnbsMZ2TU8IexWXHcgC-h7mOyEnyrGLn8.json`;
+    // const url = new URL(`https://identitytoolkit.googleapis.com/v1/${urlSegment}?key=AIzaSyCnbsMZ2TU8IexWXHcgC-h7mOyEnyrGLn8`);
+    const url = `https://reactts1-26838-default-rtdb.firebaseio.com/auth.json`;
     const body = JSON.stringify({
       email: email,
       password: password,
       returnSecureToken: true,
     });
-    try {
-      await axios.post(url, body);
-    } catch (error) {
-      console.log(error);
-      throw error;
+    if (axios.get(url + `?orderBy"email"&equalTo${email}`) === null) {
+      try {
+        await axios.post(url, body);
+      } catch (error) {
+        console.log(error);
+        throw error;
+      }
+    } else {
+      return;
     }
   }
 
   static async signup(email: string, password: string) {
-    return Auth.authenticate(email, password, "accounts:signUp");
+    return Auth.authenticate(email, password);
   }
 
   static async login(email: string, password: string) {
-    return Auth.authenticate(email, password, "accounts:signIn");
+    return Auth.authenticate(email, password);
   }
 
   static async logout() {
