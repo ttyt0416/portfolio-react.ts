@@ -5,11 +5,23 @@ import { useState } from "react";
 
 import { Link } from "react-router-dom";
 
+import { authService } from "../../firebase/firebase";
+
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTimes, faBars } from "@fortawesome/free-solid-svg-icons";
 
-const Sidemenu: React.FC = () => {
-  const [toggle, setToggle] = useState<Boolean>(false);
+interface ForAuth {
+  refreshUser: any;
+  isLoggedIn: boolean;
+  userObj: any;
+}
+
+const Sidemenu: React.FC<ForAuth> = ({
+  refreshUser,
+  isLoggedIn,
+  userObj,
+}: any) => {
+  const [toggle, setToggle] = useState<boolean>(false);
 
   const menuToggle = () => {
     setToggle(!toggle);
@@ -42,12 +54,24 @@ const Sidemenu: React.FC = () => {
           <li className="sidemenu__menu">
             <Link to="/">Sample2</Link>
           </li>
-          <li className="sidemenu__menu">
-            <Link to="/community">Community</Link>
-          </li>
-          <li className="sidemenu__menu">
-            <Link to="/auth">Sign in</Link>
-          </li>
+
+          {isLoggedIn ? (
+            <>
+              <li className="sidemenu__menu">
+                <Link to="/community">Community</Link>
+              </li>
+              <div
+                className="sidemenu__menu"
+                onClick={() => authService.signOut()}
+              >
+                Sign out
+              </div>
+            </>
+          ) : (
+            <li className="sidemenu__menu">
+              <Link to="/auth">Sign in</Link>
+            </li>
+          )}
         </ul>
       </div>
     </>

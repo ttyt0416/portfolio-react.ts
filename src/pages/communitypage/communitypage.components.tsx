@@ -8,7 +8,7 @@ import { faSearch, faPen } from "@fortawesome/free-solid-svg-icons";
 
 import Postings from "../../components/postings/postings.components";
 
-const CommunityPage: React.FC = () => {
+const Communitypage: React.FC = () => {
   return (
     <div className="community">
       <div className="community__titleContainer">
@@ -30,4 +30,4 @@ const CommunityPage: React.FC = () => {
   );
 };
 
-export default CommunityPage;
+export default Communitypage;

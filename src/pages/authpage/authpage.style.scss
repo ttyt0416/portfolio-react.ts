@@ -1,0 +1,31 @@
+@import "../../media-query";
+
+@include desktop {
+  .authpage {
+    &__container {
+      margin-left: 10rem;
+      display: flex;
+      gap: 15rem;
+    }
+
+    &__signin,
+    &__signup {
+      &-form {
+        display: flex;
+        flex-direction: column;
+
+        & > input:not(:last-child) {
+          border: none;
+          outline: none;
+
+          margin-bottom: 1.2rem;
+          padding-right: 2rem;
+
+          &:active {
+            border-bottom: 1px solid darkred;
+          }
+        }
+      }
+    }
+  }
+}

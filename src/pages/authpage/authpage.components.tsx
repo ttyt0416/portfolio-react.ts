@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./authpage.style.scss";
 
-import { Auth } from "../../helper/auth/auth";
+import { authService, firebaseInstance } from "../../firebase/firebase";
 
 const Authpage: React.FC = () => {
   const [signinEmail, setSigninEmail] = useState("");
@@ -27,13 +27,20 @@ const Authpage: React.FC = () => {
   const onSubmit = async (event: any) => {
     event.preventDefault();
     try {
+      let data;
       const {
         target: { name },
       } = event;
       if (name === "signin") {
-        Auth.login(signinEmail, signinPassword);
+        data = await authService.signInWithEmailAndPassword(
+          signinEmail,
+          signinPassword
+        );
       } else if (name === "signup") {
-        Auth.signup(signupEmail, signupPassword);
+        data = await authService.createUserWithEmailAndPassword(
+          signupEmail,
+          signupPassword
+        );
       }
     } catch (error) {
       throw error;
