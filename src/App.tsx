@@ -58,7 +58,13 @@ const App: React.FC = () => {
             <Route exact path="/community" component={Communitypage} />
           )}
           <Route exact path="/post" component={Postpage} />
-          <Route exact path="/auth" component={Authpage} />
+          {userObj === null ? (
+            <Route exact path="/auth" component={Authpage} />
+          ) : (
+            <Route exact path="/auth">
+              <Redirect to="/" />
+            </Route>
+          )}
         </Switch>
       </div>
       <div className="app__footer">

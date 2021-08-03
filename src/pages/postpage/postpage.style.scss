@@ -1,0 +1,26 @@
+@import "../../media-query";
+
+@include desktop {
+  .postpage {
+    width: 100%;
+    height: 100%;
+
+    &__container {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 50%;
+    }
+
+    &__form {
+      display: flex;
+      flex-direction: column;
+      row-gap: 2rem;
+
+      &-text {
+        padding-bottom: 2rem;
+      }
+    }
+  }
+}
