@@ -51,19 +51,23 @@ const App: React.FC = () => {
         <Switch>
           <Route exact path="/" component={Homepage} />
           {userObj === null ? (
-            <Route exact path="/community">
-              <Redirect to="/" />
-            </Route>
+            <>
+              <Route exact path="/community">
+                <Redirect to="/" />
+              </Route>
+              <Route exact path="/auth" component={Authpage} />
+              <Route exact path="/post">
+                <Redirect to="/" />
+              </Route>
+            </>
           ) : (
-            <Route exact path="/community" component={Communitypage} />
-          )}
-          <Route exact path="/post" component={Postpage} />
-          {userObj === null ? (
-            <Route exact path="/auth" component={Authpage} />
-          ) : (
-            <Route exact path="/auth">
-              <Redirect to="/" />
-            </Route>
+            <>
+              <Route exact path="/community" component={Communitypage} />
+              <Route exact path="/auth">
+                <Redirect to="/" />
+              </Route>
+              <Route exact path="/post" component={Postpage} />
+            </>
           )}
         </Switch>
       </div>

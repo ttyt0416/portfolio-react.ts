@@ -1,19 +1,83 @@
 import React, { useState } from "react";
+import { useHistory } from "react-router";
 import "./postpage.style.scss";
 
+import axios from "axios";
+
 const Postpage: React.FC = () => {
+  let history = useHistory();
+  const [title, setTitle] = useState<string>("");
+  const [file, setFile] = useState<any>(null);
+  const [text, setText] = useState<string>("");
+
+  const onChange = (
+    event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    const {
+      target: { name, value },
+    } = event;
+    if (name === "title") {
+      setTitle(value);
+    } else if (name === "file") {
+      setFile(value);
+    } else if (name === "text") {
+      setText(value);
+    }
+  };
+
+  const onSubmit = async (event: React.FormEvent) => {
+    event.preventDefault();
+    const body: {} = {
+      title: title,
+      file: file,
+      text: text,
+    };
+    const response = await axios.post(
+      "https://reactts1-26838-default-rtdb.firebaseio.com/posts.json",
+      body
+    );
+    history.push("/");
+  };
+
   return (
     <div className="postpage">
       <div className="postpage__container">
-        <form className="postpage__form">
-          <input className="postpage__form-title" type="text" name="title" />
+        <form className="postpage__form" onSubmit={onSubmit}>
+          <img className="postpage__form-image" src={file} alt="" />
           <input
-            className="postpage__form-file"
-            type="file"
-            multiple
-            name="file"
+            required
+            className="postpage__form-title"
+            type="text"
+            maxLength={50}
+            name="title"
+            onChange={onChange}
           />
-          <textarea className="postpage__form-text" name="text" />
+          <label>
+            Select Photo
+            <input
+              required
+              className="postpage__form-file"
+              type="file"
+              multiple
+              name="file"
+              accept="image/*"
+              onChange={onChange}
+            />
+          </label>
+          <textarea
+            required
+            className="postpage__form-text"
+            name="text"
+            rows={5}
+            cols={50}
+            onChange={onChange}
+          />
+          <input
+            type="submit"
+            className="postpage__form-submit"
+            name="submit"
+            value="POST"
+          />
         </form>
       </div>
     </div>
