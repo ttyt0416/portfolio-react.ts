@@ -4,10 +4,11 @@ import "./authpage.style.scss";
 import { authService, firebaseInstance } from "../../firebase/firebase";
 
 const Authpage: React.FC = () => {
-  const [signinEmail, setSigninEmail] = useState("");
-  const [signinPassword, setSigninPassword] = useState("");
-  const [signupEmail, setSignupEmail] = useState("");
-  const [signupPassword, setSignupPassword] = useState("");
+  const [signinEmail, setSigninEmail] = useState<string>("");
+  const [signinPassword, setSigninPassword] = useState<string>("");
+  const [signupEmail, setSignupEmail] = useState<string>("");
+  const [signupPassword, setSignupPassword] = useState<string>("");
+  const [error, setError] = useState<string>("");
 
   const onChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const {
@@ -43,7 +44,17 @@ const Authpage: React.FC = () => {
         );
       }
     } catch (error) {
-      throw error;
+      switch (error.code) {
+        case "auth/user-not-found":
+          alert("Cannot find corresponding user");
+          break;
+        case "auth/wrong-password":
+          alert("Invalide password");
+          break;
+        case "auth/email-already-in-use":
+          alert("Email is already in use");
+          break;
+      }
     }
   };
 

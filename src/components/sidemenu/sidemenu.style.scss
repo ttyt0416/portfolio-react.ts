@@ -73,6 +73,15 @@
       padding-right: 2rem;
       cursor: pointer;
 
+      &,
+      & > * {
+        transition: all 0.5s;
+
+        &:hover {
+          color: pink;
+        }
+      }
+
       & > * {
         text-decoration: none;
         color: white;

@@ -43,7 +43,6 @@ const Postpage: React.FC = () => {
     <div className="postpage">
       <div className="postpage__container">
         <form className="postpage__form" onSubmit={onSubmit}>
-          <img className="postpage__form-image" src={file} alt="" />
           <input
             required
             className="postpage__form-title"
@@ -53,12 +52,13 @@ const Postpage: React.FC = () => {
             onChange={onChange}
           />
           <label>
-            Select Photo
+            {file === null
+              ? "Select Photo"
+              : file.replace("C:\\fakepath\\", "")}
             <input
               required
               className="postpage__form-file"
               type="file"
-              multiple
               name="file"
               accept="image/*"
               onChange={onChange}
