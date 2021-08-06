@@ -8,7 +8,6 @@ const Authpage: React.FC = () => {
   const [signinPassword, setSigninPassword] = useState<string>("");
   const [signupEmail, setSignupEmail] = useState<string>("");
   const [signupPassword, setSignupPassword] = useState<string>("");
-  const [error, setError] = useState<string>("");
 
   const onChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const {
