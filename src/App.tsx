@@ -63,6 +63,7 @@ const App: React.FC = () => {
         ) : (
           <>
             <Route exact path="/community" component={Communitypage} />
+            <Route path="/community/:id" component={Communitypage} />
             <Route exact path="/auth">
               <Redirect to="/" />
             </Route>

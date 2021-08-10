@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import "./postings.style.scss";
 
 import axios from "axios";
@@ -6,7 +7,8 @@ import axios from "axios";
 const Postings: React.FC = () => {
   let [titleArr, setTitleArr] = useState<any>([]);
   let titles: any = [];
-  const getData = async () => {
+
+  const GetData = async () => {
     const response = await axios.get(
       "https://reactts1-26838-default-rtdb.firebaseio.com/posts.json"
     );
@@ -24,11 +26,19 @@ const Postings: React.FC = () => {
     console.log(titleArr);
   };
 
+  useEffect(() => {
+    GetData();
+  }, []);
+
   return (
-    <div className="postings" onClick={getData}>
-      {titleArr.map((title: any) => (
-        <div className="postings__title">{title}</div>
-      ))}
+    <div className="postings">
+      <div className="postings__titles">
+        {titleArr.map((title: any, i: any) => (
+          <Link className="postings__title" key={i} to={`/community/${title}`}>
+            {title}
+          </Link>
+        ))}
+      </div>
     </div>
   );
 };
