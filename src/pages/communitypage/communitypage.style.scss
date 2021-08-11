@@ -2,6 +2,7 @@
 
 @include desktop {
   .community {
+    z-index: 2;
     min-height: 100vh;
 
     &__titleContainer {
