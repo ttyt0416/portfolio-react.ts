@@ -9,13 +9,19 @@ import { faSearch, faPen } from "@fortawesome/free-solid-svg-icons";
 import Postings from "../../components/postings/postings.components";
 
 const Communitypage: React.FC = () => {
+  const [searching, setSearching] = useState<string>("");
   const [search, setSearch] = useState<string>("");
 
   const onChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const {
       target: { value },
     } = event;
-    setSearch(value);
+    setSearching(value);
+  };
+
+  const onClick = (event: React.MouseEvent<SVGSVGElement>) => {
+    setSearch(searching);
+    return;
   };
 
   return (
@@ -29,7 +35,7 @@ const Communitypage: React.FC = () => {
             onChange={onChange}
           />
           <button type="submit" className="community__searchButton">
-            <FontAwesomeIcon icon={faSearch} />
+            <FontAwesomeIcon icon={faSearch} onClick={onClick} />
           </button>
           <Link className="community__post" to="/post">
             <FontAwesomeIcon icon={faPen} />

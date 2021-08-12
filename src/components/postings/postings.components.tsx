@@ -13,7 +13,7 @@ const Postings: React.FC<Search> = (search) => {
   let titles: any = [];
 
   const GetData = async () => {
-    console.log(search);
+    console.log(Object.values(search)[0]);
     const response = await axios.get(
       "https://reactts1-26838-default-rtdb.firebaseio.com/posts.json"
     );
@@ -33,7 +33,7 @@ const Postings: React.FC<Search> = (search) => {
       const titleSearch = await axios.get(
         `https://reactts1-26838-default-rtdb.firebaseio.com/posts/${titleResponse[i]}/title.json` +
           (Object.values(search)[0] !== ""
-            ? `?orderBy="$value"&equalTo=${search}`
+            ? `?orderBy="$value"&equalTo="${Object.values(search)[0]}"`
             : "")
       );
       const titleData = titleSearch.data;
@@ -44,7 +44,7 @@ const Postings: React.FC<Search> = (search) => {
 
   useEffect(() => {
     GetData();
-  }, []);
+  }, [search]);
 
   return (
     <div className="postings">
