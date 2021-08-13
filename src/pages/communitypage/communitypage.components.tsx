@@ -19,10 +19,9 @@ const Communitypage: React.FC = () => {
     setSearching(value);
   };
 
-  const onClick = (event: React.MouseEvent<SVGSVGElement>) => {
-    setSearch(searching);
-    return;
-  };
+  // const onClick = (event: React.MouseEvent<SVGSVGElement>) => {
+  //   setSearch(searching);
+  // };
 
   return (
     <div className="community">
@@ -35,7 +34,10 @@ const Communitypage: React.FC = () => {
             onChange={onChange}
           />
           <button type="submit" className="community__searchButton">
-            <FontAwesomeIcon icon={faSearch} onClick={onClick} />
+            <FontAwesomeIcon
+              icon={faSearch}
+              onClick={() => setSearch(searching)}
+            />
           </button>
           <Link className="community__post" to="/post">
             <FontAwesomeIcon icon={faPen} />

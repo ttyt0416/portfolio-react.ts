@@ -11,9 +11,10 @@ interface Search {
 const Postings: React.FC<Search> = (search) => {
   let [titleArr, setTitleArr] = useState<any>([]);
   let titles: any = [];
+  const searchObject = Object.values(search)[0];
 
   const GetData = async () => {
-    console.log(Object.values(search)[0]);
+    console.log(searchObject);
     const response = await axios.get(
       "https://reactts1-26838-default-rtdb.firebaseio.com/posts.json"
     );
@@ -21,20 +22,11 @@ const Postings: React.FC<Search> = (search) => {
     const titleResponse = Object.keys(response.data);
 
     for (let i = 0; i < Object.values(response.data).length; i++) {
-      // if (search === null) {
-      //   const test = await axios.get(
-      //     `https://reactts1-26838-default-rtdb.firebaseio.com/posts/${titleResponse[i]}/title.json`
-      //   );
-      // } else {
-      //   const test = await axios.get(
-      //     `https://reactts1-26838-default-rtdb.firebaseio.com/posts/${titleResponse[i]}/title.json?orderBy="$value"&equalTo=${search}`
-      //   );
-      // }
       const titleSearch = await axios.get(
-        `https://reactts1-26838-default-rtdb.firebaseio.com/posts/${titleResponse[i]}/title.json` +
-          (Object.values(search)[0] !== ""
-            ? `?orderBy="$value"&equalTo="${Object.values(search)[0]}"`
-            : "")
+        `https://reactts1-26838-default-rtdb.firebaseio.com/posts` +
+          (searchObject !== ""
+            ? `.json?orderBy="title"&startAt="${searchObject}"&endAt="${searchObject}\uf8ff"&print=pretty`
+            : `/${titleResponse[i]}/title.json?print=pretty`)
       );
       const titleData = titleSearch.data;
       titles.push(titleData);
@@ -44,7 +36,7 @@ const Postings: React.FC<Search> = (search) => {
 
   useEffect(() => {
     GetData();
-  }, [search]);
+  }, [searchObject]);
 
   return (
     <div className="postings">

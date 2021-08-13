@@ -36,7 +36,7 @@ const Postpage: React.FC = () => {
       "https://reactts1-26838-default-rtdb.firebaseio.com/posts.json",
       body
     );
-    history.push("/");
+    history.push("/community");
   };
 
   return (
