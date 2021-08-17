@@ -67,7 +67,9 @@ const App: React.FC = () => {
             <Route exact path="/auth">
               <Redirect to="/" />
             </Route>
-            <Route exact path="/post" component={Postpage} />
+            <Route exact path="/post">
+              <Postpage uid={userObj.uid} />
+            </Route>
           </>
         )}
       </Switch>

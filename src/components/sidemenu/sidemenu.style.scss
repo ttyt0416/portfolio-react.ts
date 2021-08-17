@@ -71,10 +71,14 @@
       font-size: 1.7rem;
       font-weight: 500;
       padding-right: 2rem;
-      cursor: pointer;
+
+      &:nth-child(5):hover {
+        cursor: pointer;
+      }
 
       &,
       & > * {
+        width: 100%;
         transition: all 0.5s;
 
         &:hover {
@@ -85,6 +89,7 @@
       & > * {
         text-decoration: none;
         color: white;
+        cursor: pointer;
       }
 
       &:not(:first-child) {

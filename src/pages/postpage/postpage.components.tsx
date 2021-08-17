@@ -4,7 +4,11 @@ import "./postpage.style.scss";
 
 import axios from "axios";
 
-const Postpage: React.FC = () => {
+interface userInfo {
+  uid: string | null;
+}
+
+const Postpage: React.FC<userInfo> = (uid) => {
   let history = useHistory();
   const [title, setTitle] = useState<string>("");
   const [file, setFile] = useState<any>(null);
@@ -31,6 +35,7 @@ const Postpage: React.FC = () => {
       title: title,
       file: file,
       text: text,
+      uid: Object.values(uid)[0],
     };
     const response = await axios.post(
       "https://reactts1-26838-default-rtdb.firebaseio.com/posts.json",

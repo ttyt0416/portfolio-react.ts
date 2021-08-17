@@ -5,30 +5,32 @@ import { Link } from "react-router-dom";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch, faPen } from "@fortawesome/free-solid-svg-icons";
+import axios from "axios";
 
 import Postings from "../../components/postings/postings.components";
 
 const Communitypage: React.FC = () => {
-  const [searching, setSearching] = useState<string>("");
-  const [search, setSearch] = useState<string>("");
+  // const [searching, setSearching] = useState<string>("");
+  // const [search, setSearch] = useState<string>("");
 
-  const onChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const {
-      target: { value },
-    } = event;
-    setSearching(value);
-  };
+  // const onChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  //   const {
+  //     target: { value },
+  //   } = event;
+  //   setSearching(value);
+  // };
 
   // const onClick = (event: React.MouseEvent<SVGSVGElement>) => {
   //   setSearch(searching);
   // };
+  const [page, setPage] = useState<any>();
 
   return (
     <div className="community">
       <div className="community__titleContainer">
         <h1 className="community__title">Community Page</h1>
         <div className="community__buttons">
-          <input
+          {/* <input
             type="text"
             className="community__searchBox"
             onChange={onChange}
@@ -38,14 +40,24 @@ const Communitypage: React.FC = () => {
               icon={faSearch}
               onClick={() => setSearch(searching)}
             />
-          </button>
+          </button> */}
           <Link className="community__post" to="/post">
             <FontAwesomeIcon icon={faPen} />
           </Link>
         </div>
         <div className="community__postContiner">
-          <Postings search={search} />
+          <Postings />
         </div>
+      </div>
+      <div className="community__pageContainer">
+        <ul className="community__pages">
+          <li className="community__page" onClick={() => setPage(1)}>
+            1
+          </li>
+          <li className="community__page" onClick={() => setPage(1)}>
+            1
+          </li>
+        </ul>
       </div>
     </div>
   );
