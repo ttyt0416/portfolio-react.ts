@@ -3,7 +3,7 @@
 @include desktop {
   .community {
     z-index: 2;
-    min-height: 100vh;
+    min-height: 120vh;
 
     &__titleContainer {
       display: block;
@@ -68,6 +68,31 @@
       &:hover {
         color: pink;
         border: 3px solid pink;
+      }
+    }
+
+    &__paginations {
+      position: absolute;
+      z-index: 7;
+      width: 70%;
+      margin-left: 15%;
+      margin-top: 110vh;
+      display: block;
+      text-align: center;
+    }
+
+    &__pagination {
+      font-size: 1rem;
+      background-color: inherit;
+      border: none;
+      outline: none;
+
+      &-target {
+        color: blue;
+      }
+
+      &:hover {
+        cursor: pointer;
       }
     }
   }

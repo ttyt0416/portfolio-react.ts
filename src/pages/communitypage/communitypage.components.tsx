@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./communitypage.style.scss";
 
 import { Link } from "react-router-dom";
@@ -23,7 +23,70 @@ const Communitypage: React.FC = () => {
   // const onClick = (event: React.MouseEvent<SVGSVGElement>) => {
   //   setSearch(searching);
   // };
-  const [page, setPage] = useState<any>();
+  const [page, setPage] = useState<number>(1);
+  let [titleArr, setTitleArr] = useState<any>([]);
+  let titles: any = [];
+  // const searchObject = Object.values(search)[0];
+
+  const GetData = async () => {
+    const response = await axios.get(
+      "https://reactts1-26838-default-rtdb.firebaseio.com/posts.json"
+    );
+
+    const titleResponse = Object.keys(response.data);
+
+    // for (let i = 0; i < Object.values(response.data).length; i++) {
+    //   const titleSearch = await axios.get(
+    //     `https://reactts1-26838-default-rtdb.firebaseio.com/posts` +
+    //       (searchObject !== ""
+    //         ? `.json?orderBy="title"&startAt="${searchObject}"&endAt="${searchObject}\uf8ff"&print=pretty`
+    //         : `/${titleResponse[i]}/title.json?print=pretty`)
+    //   );
+    //   const titleData = titleSearch.data;
+    //   titles.push(titleData);
+    // }
+
+    for (
+      let i = page * 10 - 10;
+      i < page * 10 - 1 && i < Object.values(response.data).length;
+      i++
+    ) {
+      const titleSearch = await axios.get(
+        `https://reactts1-26838-default-rtdb.firebaseio.com/posts/${titleResponse[i]}/title.json?print=pretty`
+      );
+      const titleData = titleSearch.data;
+      titles.push(titleData);
+    }
+
+    setTitleArr((titleArr = titles));
+  };
+
+  const Buttons = (number: number) => {
+    const pagination = [];
+    for (let i = 1; i <= number; i++) {
+      pagination.push(
+        <input
+          type="button"
+          key={i}
+          value={i}
+          className="community__pagination"
+          onClick={onClick}
+        />
+      );
+    }
+    return pagination;
+  };
+
+  const onClick = (event: any) => {
+    const {
+      target: { value },
+    } = event;
+    setPage(value);
+  };
+
+  useEffect(() => {
+    GetData();
+  }, []);
 
   return (
     <div className="community">
@@ -46,18 +109,11 @@ const Communitypage: React.FC = () => {
           </Link>
         </div>
         <div className="community__postContiner">
-          <Postings />
+          <Postings titleArr={titleArr} />
         </div>
       </div>
-      <div className="community__pageContainer">
-        <ul className="community__pages">
-          <li className="community__page" onClick={() => setPage(1)}>
-            1
-          </li>
-          <li className="community__page" onClick={() => setPage(1)}>
-            1
-          </li>
-        </ul>
+      <div className="community__paginations">
+        {Buttons(parseInt(`${titleArr.length / 10}`) + 1)}
       </div>
     </div>
   );
