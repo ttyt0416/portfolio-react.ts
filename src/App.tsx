@@ -8,6 +8,7 @@ import Homepage from "./pages/homepage/homepage.component";
 import Communitypage from "./pages/communitypage/communitypage.components";
 import Postpage from "./pages/postpage/postpage.components";
 import Authpage from "./pages/authpage/authpage.components";
+import Detailpage from "./pages/detailpage/detailpage.components";
 
 import Homelink from "./components/homelink/homelink.component";
 import Footer from "./components/footer/footer.component";
@@ -52,7 +53,7 @@ const App: React.FC = () => {
         <Route exact path="/" component={Homepage} />
         {userObj === null ? (
           <>
-            <Route exact path="/community">
+            <Route path="/community">
               <Redirect to="/" />
             </Route>
             <Route exact path="/auth" component={Authpage} />
@@ -63,7 +64,7 @@ const App: React.FC = () => {
         ) : (
           <>
             <Route exact path="/community" component={Communitypage} />
-            <Route path="/community/:id" component={Communitypage} />
+            <Route path="/community/:id" component={Detailpage} />
             <Route exact path="/auth">
               <Redirect to="/" />
             </Route>

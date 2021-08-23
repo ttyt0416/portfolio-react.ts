@@ -26,6 +26,8 @@ const Communitypage: React.FC = () => {
   const [page, setPage] = useState<number>(1);
   let [titleArr, setTitleArr] = useState<any>([]);
   let titles: any = [];
+  const classSelected = "community__pagination-selected";
+  const classPagination = document.querySelectorAll(".community__pagination");
   // const searchObject = Object.values(search)[0];
 
   const GetData = async () => {
@@ -69,7 +71,11 @@ const Communitypage: React.FC = () => {
           type="button"
           key={i}
           value={i}
-          className="community__pagination"
+          className={
+            page === i
+              ? "community__pagination community__pagination-selected"
+              : "community__pagination"
+          }
           onClick={onClick}
         />
       );
@@ -81,8 +87,14 @@ const Communitypage: React.FC = () => {
     const {
       target: { value },
     } = event;
+    for (let i = 0; i < classPagination.length; i++) {
+      classPagination[i].classList.remove(classSelected);
+    }
+    event.target.classList.add(classSelected);
     setPage(value);
   };
+
+  console.log(page);
 
   useEffect(() => {
     GetData();
