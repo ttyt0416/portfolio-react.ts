@@ -49,15 +49,24 @@ const Postings: React.FC<Title> = ({ titleArr }) => {
   // useEffect(() => {
   //   GetData();
   // }, []);
+  console.log(titleArr);
 
   return (
     <div className="postings">
       <div className="postings__titles">
-        {titleArr.map((title: any, i: any) => (
-          <Link className="postings__title" key={i} to={`/community/${title}`}>
-            {title}
-          </Link>
-        ))}
+        {titleArr[0] === null ? (
+          <div>Search Result: 0</div>
+        ) : (
+          titleArr.map((title: any, i: any) => (
+            <Link
+              className="postings__title"
+              key={i}
+              to={`/community/${title}`}
+            >
+              {title}
+            </Link>
+          ))
+        )}
       </div>
     </div>
   );

@@ -7,28 +7,31 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch, faPen } from "@fortawesome/free-solid-svg-icons";
 import axios from "axios";
 
-import Postings from "../../components/postings/postings.components";
+import Postings from "../../components/postings/postings.component";
 
 const Communitypage: React.FC = () => {
-  // const [searching, setSearching] = useState<string>("");
-  // const [search, setSearch] = useState<string>("");
+  const [searching, setSearching] = useState<string>("");
+  const [search, setSearch] = useState<string>("");
+  let [titleArr, setTitleArr] = useState<[]>([]);
+  const [page, setPage] = useState<number>(1);
+  let titles: any = [];
+  const classSelected = "community__pagination-selected";
+  const classPagination = document.querySelectorAll(".community__pagination");
 
-  // const onChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-  //   const {
-  //     target: { value },
-  //   } = event;
-  //   setSearching(value);
-  // };
+  const onChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const {
+      target: { value },
+    } = event;
+    setSearching(value);
+  };
 
   // const onClick = (event: React.MouseEvent<SVGSVGElement>) => {
   //   setSearch(searching);
   // };
-  const [page, setPage] = useState<number>(1);
-  let [titleArr, setTitleArr] = useState<any>([]);
-  let titles: any = [];
-  const classSelected = "community__pagination-selected";
-  const classPagination = document.querySelectorAll(".community__pagination");
-  // const searchObject = Object.values(search)[0];
+
+  const onButtonClick = () => {
+    setSearch(searching);
+  };
 
   const GetData = async () => {
     const response = await axios.get(
@@ -37,30 +40,31 @@ const Communitypage: React.FC = () => {
 
     const titleResponse = Object.keys(response.data);
 
-    // for (let i = 0; i < Object.values(response.data).length; i++) {
-    //   const titleSearch = await axios.get(
-    //     `https://reactts1-26838-default-rtdb.firebaseio.com/posts` +
-    //       (searchObject !== ""
-    //         ? `.json?orderBy="title"&startAt="${searchObject}"&endAt="${searchObject}\uf8ff"&print=pretty`
-    //         : `/${titleResponse[i]}/title.json?print=pretty`)
-    //   );
-    //   const titleData = titleSearch.data;
-    //   titles.push(titleData);
-    // }
+    if (search !== "") {
+      for (let i = 0; i < Object.values(response.data).length; i++) {
+        const titleSearch = await axios.get(
+          `https://reactts1-26838-default-rtdb.firebaseio.com/posts.json?orderBy="title"&startAt="${search}"&endAt="${search}\uf8ff"&print=pretty`
+        );
 
-    for (
-      let i = page * 10 - 10;
-      i < page * 10 - 1 && i < Object.values(response.data).length;
-      i++
-    ) {
-      const titleSearch = await axios.get(
-        `https://reactts1-26838-default-rtdb.firebaseio.com/posts/${titleResponse[i]}/title.json?print=pretty`
-      );
-      const titleData = titleSearch.data;
-      titles.push(titleData);
+        const titleObject: any = Object.values(titleSearch.data)[i];
+        const titleData = titleObject === undefined ? null : titleObject.title;
+        titles.push(titleData);
+      }
+    } else if (search === "") {
+      for (
+        let i = page * 10 - 10;
+        i < page * 10 - 1 && i < Object.values(response.data).length;
+        i++
+      ) {
+        const titleSearch = await axios.get(
+          `https://reactts1-26838-default-rtdb.firebaseio.com/posts/${titleResponse[i]}/title.json?print=pretty`
+        );
+        const titleData = titleSearch.data;
+        titles.push(titleData);
+      }
     }
 
-    setTitleArr((titleArr = titles));
+    setTitleArr(titles);
   };
 
   const Buttons = (number: number) => {
@@ -94,28 +98,27 @@ const Communitypage: React.FC = () => {
     setPage(value);
   };
 
-  console.log(page);
-
   useEffect(() => {
     GetData();
-  }, []);
+  }, [search]);
 
   return (
     <div className="community">
       <div className="community__titleContainer">
         <h1 className="community__title">Community Page</h1>
         <div className="community__buttons">
-          {/* <input
+          <input
             type="text"
             className="community__searchBox"
             onChange={onChange}
           />
-          <button type="submit" className="community__searchButton">
-            <FontAwesomeIcon
-              icon={faSearch}
-              onClick={() => setSearch(searching)}
-            />
-          </button> */}
+          <button
+            type="submit"
+            className="community__searchButton"
+            onClick={onButtonClick}
+          >
+            <FontAwesomeIcon icon={faSearch} />
+          </button>
           <Link className="community__post" to="/post">
             <FontAwesomeIcon icon={faPen} />
           </Link>

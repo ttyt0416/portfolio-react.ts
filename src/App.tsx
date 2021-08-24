@@ -5,14 +5,15 @@ import { Route, Switch, Redirect } from "react-router-dom";
 import { authService } from "./firebase/firebase";
 
 import Homepage from "./pages/homepage/homepage.component";
-import Communitypage from "./pages/communitypage/communitypage.components";
+import Communitypage from "./pages/communitypage/communitypage.component";
 import Postpage from "./pages/postpage/postpage.components";
-import Authpage from "./pages/authpage/authpage.components";
-import Detailpage from "./pages/detailpage/detailpage.components";
+import Authpage from "./pages/authpage/authpage.component";
+import Detailpage from "./pages/detailpage/detailpage.component";
+import Examplepage from "./pages/examplepage/examplepage.component";
 
 import Homelink from "./components/homelink/homelink.component";
 import Footer from "./components/footer/footer.component";
-import Sidemenu from "./components/sidemenu/sidemenu.components";
+import Sidemenu from "./components/sidemenu/sidemenu.component";
 
 const App: React.FC = () => {
   const [init, setInit] = useState(false);
@@ -51,6 +52,7 @@ const App: React.FC = () => {
       />
       <Switch>
         <Route exact path="/" component={Homepage} />
+        <Route exact path="/example" component={Examplepage} />
         {userObj === null ? (
           <>
             <Route path="/community">
@@ -64,7 +66,9 @@ const App: React.FC = () => {
         ) : (
           <>
             <Route exact path="/community" component={Communitypage} />
-            <Route path="/community/:id" component={Detailpage} />
+            <Route path="/community/:id">
+              <Detailpage uid={userObj.uid!} />
+            </Route>
             <Route exact path="/auth">
               <Redirect to="/" />
             </Route>

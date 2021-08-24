@@ -11,7 +11,6 @@ interface userInfo {
 const Postpage: React.FC<userInfo> = (uid) => {
   let history = useHistory();
   const [title, setTitle] = useState<string>("");
-  const [file, setFile] = useState<any>(null);
   const [text, setText] = useState<string>("");
 
   const onChange = (
@@ -22,8 +21,6 @@ const Postpage: React.FC<userInfo> = (uid) => {
     } = event;
     if (name === "title") {
       setTitle(value);
-    } else if (name === "file") {
-      setFile(value);
     } else if (name === "text") {
       setText(value);
     }
@@ -33,7 +30,6 @@ const Postpage: React.FC<userInfo> = (uid) => {
     event.preventDefault();
     const body: {} = {
       title: title,
-      file: file,
       text: text,
       uid: Object.values(uid)[0],
     };
@@ -56,7 +52,7 @@ const Postpage: React.FC<userInfo> = (uid) => {
             name="title"
             onChange={onChange}
           />
-          <label>
+          {/* <label>
             {file === null
               ? "Select Photo"
               : file.replace("C:\\fakepath\\", "")}
@@ -68,7 +64,7 @@ const Postpage: React.FC<userInfo> = (uid) => {
               accept="image/*"
               onChange={onChange}
             />
-          </label>
+          </label> */}
           <textarea
             required
             className="postpage__form-text"
