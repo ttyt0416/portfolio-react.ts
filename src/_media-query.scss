@@ -86,3 +86,31 @@ $breakpoint-desktop: 1024px;
     transform: scale(4) translateX(-7rem);
   }
 }
+
+@keyframes moveToRightMobile {
+  0% {
+    position: absolute;
+    color: black;
+    transform: scale(4) translateX(-4rem);
+  }
+
+  100% {
+    position: absolute;
+    color: black;
+    transform: scale(4) translateX(0);
+  }
+}
+
+@keyframes moveToLeftMobile {
+  0% {
+    position: absolute;
+    color: black;
+    transform: scale(4) translateX(0);
+  }
+
+  100% {
+    position: absolute;
+    color: black;
+    transform: scale(4) translateX(-4rem);
+  }
+}

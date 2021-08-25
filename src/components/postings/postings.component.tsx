@@ -54,8 +54,8 @@ const Postings: React.FC<Title> = ({ titleArr }) => {
   return (
     <div className="postings">
       <div className="postings__titles">
-        {titleArr[0] === null ? (
-          <div>Search Result: 0</div>
+        {Object.values(titleArr)[0] === null ? (
+          <div>Don't have Search Result</div>
         ) : (
           titleArr.map((title: any, i: any) => (
             <Link

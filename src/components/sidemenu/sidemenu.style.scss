@@ -1,100 +1,110 @@
 @import "../../media-query";
 
-@include desktop {
-  .sidemenu {
-    &__button {
+.sidemenu {
+  &__button {
+    position: fixed;
+    top: 0;
+    right: 0;
+    margin-top: 4rem;
+    margin-right: 7rem;
+    @include mobile {
+      margin-right: 4rem;
+    }
+    z-index: 10;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+  }
+
+  &__open {
+    animation: moveToRight 0.5s forwards;
+    @include mobile {
+      animation: moveToRightMobile 0.5s forwards;
+    }
+  }
+
+  &__close {
+    animation: moveToLeft 0.5s forwards;
+    @include mobile {
+      animation: moveToLeftMobile 0.5s forwards;
+    }
+  }
+
+  &__open,
+  &__close {
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
+  &__menuContainer {
+    position: fixed;
+    // display: block;
+    right: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: white;
+    z-index: 7;
+    opacity: 0.7;
+    animation: moveInRight 0.5s;
+
+    &-disappear {
       position: fixed;
-      top: 0;
-      right: 0;
-      margin-top: 4rem;
-      margin-right: 7rem;
-      z-index: 10;
-
-      display: flex;
-      flex-direction: column;
-      justify-content: space-around;
-    }
-
-    &__open {
-      animation: moveToRight 0.5s forwards;
-    }
-
-    &__close {
-      animation: moveToLeft 0.5s forwards;
-    }
-
-    &__open,
-    &__close {
-      &:hover {
-        cursor: pointer;
-      }
-    }
-
-    &__menuContainer {
-      position: fixed;
-      // display: block;
       right: 0;
       top: 0;
       width: 100%;
       height: 100%;
-      background-color: white;
-      z-index: 7;
-      opacity: 0.7;
-      animation: moveInRight 0.5s;
+      z-index: 8;
+      animation: disappearToRight 0.5s forwards;
+    }
+  }
 
-      &-disappear {
-        position: fixed;
-        right: 0;
-        top: 0;
-        width: 100%;
-        height: 100%;
-        z-index: 8;
-        animation: disappearToRight 0.5s forwards;
+  &__menus {
+    position: fixed;
+    right: 0;
+    top: 0;
+    margin-top: 0;
+    width: 30rem;
+    @include mobile {
+      width: 15rem;
+    }
+    height: 100%;
+    background-color: black;
+    list-style: none;
+    padding-top: 1.5rem;
+    z-index: 9;
+  }
+
+  &__menu {
+    color: white;
+    font-size: 1.7rem;
+    font-weight: 500;
+    padding-right: 2rem;
+
+    &:nth-child(5):hover {
+      cursor: pointer;
+    }
+
+    &,
+    & > * {
+      width: 100%;
+      transition: all 0.5s;
+
+      &:hover {
+        color: pink;
       }
     }
 
-    &__menus {
-      position: fixed;
-      right: 0;
-      top: 0;
-      margin-top: 0;
-      width: 30rem;
-      height: 100%;
-      background-color: black;
-      list-style: none;
-      padding-top: 1.5rem;
-      z-index: 9;
-    }
-
-    &__menu {
+    & > * {
+      text-decoration: none;
       color: white;
-      font-size: 1.7rem;
-      font-weight: 500;
-      padding-right: 2rem;
+      cursor: pointer;
+    }
 
-      &:nth-child(5):hover {
-        cursor: pointer;
-      }
-
-      &,
-      & > * {
-        width: 100%;
-        transition: all 0.5s;
-
-        &:hover {
-          color: pink;
-        }
-      }
-
-      & > * {
-        text-decoration: none;
-        color: white;
-        cursor: pointer;
-      }
-
-      &:not(:first-child) {
-        margin-top: 2rem;
-      }
+    &:not(:first-child) {
+      margin-top: 2rem;
     }
   }
 }

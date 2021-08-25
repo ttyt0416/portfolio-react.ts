@@ -1,30 +1,28 @@
 @import "../../media-query";
 
-@include desktop {
-  .postings {
-    position: absolute;
-    display: block;
-    width: 70%;
-    font-size: 1.5rem;
-    text-align: left;
-    margin-top: 1rem;
+.postings {
+  position: absolute;
+  display: block;
+  width: 70%;
+  font-size: 1.5rem;
+  text-align: left;
+  margin-top: 1rem;
 
-    &__titles {
-      display: flex;
-      flex-direction: column;
-    }
+  &__titles {
+    display: flex;
+    flex-direction: column;
+  }
 
-    &__title {
-      padding: 1rem 1rem;
-      border-bottom: 1px solid black;
-      text-decoration: none;
-      color: black;
+  &__title {
+    padding: 1rem 1rem;
+    border-bottom: 1px solid black;
+    text-decoration: none;
+    color: black;
 
-      transition: color 0.5s;
+    transition: color 0.5s;
 
-      &:hover {
-        color: pink;
-      }
+    &:hover {
+      color: pink;
     }
   }
 }

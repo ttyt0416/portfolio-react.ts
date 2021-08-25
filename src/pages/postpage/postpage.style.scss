@@ -1,99 +1,99 @@
 @import "../../media-query";
 
-@include desktop {
-  .postpage {
-    width: 100%;
-    min-height: 120vh;
+.postpage {
+  width: 100%;
+  min-height: 120vh;
 
-    &__container {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      width: 50%;
+  &__container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 50%;
+    @include mobile {
+      margin-top: 3rem;
+    }
+  }
+
+  &__form {
+    display: flex;
+    flex-direction: column;
+    row-gap: 2rem;
+
+    &-title {
+      padding-top: 0.5rem;
+      padding-bottom: 0.5rem;
     }
 
-    &__form {
-      display: flex;
-      flex-direction: column;
-      row-gap: 2rem;
+    &-title,
+    &-text {
+      font-size: 1.4rem;
+      padding-left: 0.5rem;
+      padding-right: 0.5rem;
 
-      &-title {
-        padding-top: 0.5rem;
-        padding-bottom: 0.5rem;
+      &:focus {
+        outline: none;
+        border: 1.5px solid darkred;
       }
+    }
 
-      &-title,
-      &-text {
-        font-size: 1.4rem;
-        padding-left: 0.5rem;
-        padding-right: 0.5rem;
+    &-text {
+      padding-top: 0.5rem;
+      padding-bottom: 10rem;
+      overflow: auto;
+      resize: none;
 
-        &:focus {
-          outline: none;
-          border: 1.5px solid darkred;
+      &::-webkit-scrollbar {
+        background-color: grey;
+        width: 0.5rem;
+        height: 100%;
+
+        &-thumb {
+          background: darkred;
+          border-radius: 4px;
         }
       }
+    }
 
-      // &-file {
-      //   position: absolute;
-      //   width: 1px;
-      //   height: 1px;
-      //   padding: 0;
-      //   margin: -1px;
-      //   overflow: hidden;
-      //   clip: rect(0, 0, 0, 0);
-      //   border: 0;
-      // }
+    &-submit {
+      background-color: white;
+      border: 3px solid black;
+      border-radius: 4px;
+      padding: 1rem 0;
 
-      // & > label {
-      //   border: 1px solid black;
-      //   padding: 0.3rem 0;
-      //   text-align: center;
-      //   font-size: 1rem;
-      //   border-radius: 4px;
+      transition: all 0.5s;
 
-      //   transition: all 0.5s;
-
-      //   &:hover {
-      //     border: 1px solid pink;
-      //     color: pink;
-      //     cursor: pointer;
-      //   }
-      // }
-
-      &-text {
-        padding-top: 0.5rem;
-        padding-bottom: 10rem;
-        overflow: auto;
-        resize: none;
-
-        &::-webkit-scrollbar {
-          background-color: grey;
-          width: 0.5rem;
-          height: 100%;
-
-          &-thumb {
-            background: darkred;
-            border-radius: 4px;
-          }
-        }
-      }
-
-      &-submit {
-        background-color: white;
-        border: 3px solid black;
-        border-radius: 4px;
-        padding: 1rem 0;
-
-        transition: all 0.5s;
-
-        &:hover {
-          cursor: pointer;
-          border: 3px solid pink;
-          color: pink;
-        }
+      &:hover {
+        cursor: pointer;
+        border: 3px solid pink;
+        color: pink;
       }
     }
   }
 }
+// &-file {
+//   position: absolute;
+//   width: 1px;
+//   height: 1px;
+//   padding: 0;
+//   margin: -1px;
+//   overflow: hidden;
+//   clip: rect(0, 0, 0, 0);
+//   border: 0;
+// }
+
+// & > label {
+//   border: 1px solid black;
+//   padding: 0.3rem 0;
+//   text-align: center;
+//   font-size: 1rem;
+//   border-radius: 4px;
+
+//   transition: all 0.5s;
+
+//   &:hover {
+//     border: 1px solid pink;
+//     color: pink;
+//     cursor: pointer;
+//   }
+// }
