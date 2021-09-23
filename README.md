@@ -1,46 +1,40 @@
-# Getting Started with Create React App
+# 이 repository 는 https://portfolio-yoon-react.herokuapp.com/ 에 호스팅되어 있습니다.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+- 디자인은 html5up.net의 phantom을 참고하였습니다.
 
-## Available Scripts
+## 사용 스택
 
-In the project directory, you can run:
+- react.ts
+- react hooks
+- scss
+- firebase (auth, realtime database)
 
-### `npm start`
+## 설명
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+전체적으로 하얀색, 검은색, 분홍색, 붉은색을 주로 사용하고 있으며, hover시 분홍색으로, active시 붉은색으로 변하는 효과를 주로 사용하고 있습니다.
+또한 넓이 335px, 758px, 1024px에 브레이크 포인트를 두어 모바일, 태블릿, 데스크탑에 최대한 반응 할 수 있게 하였습니다.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+### 홈페이지
 
-### `npm test`
+이 포트폴리오는 로그인을 하였을때와 하지 않았을 때의 route자체를 나눠서 로그인을 하지 않았을 때엔 홈페이지 및 sign in페이지만 사용 가능하며 사이드메뉴에서 sign in 메뉴를 통해 로그인 및 회원가입 페이지에 들어갈 수 있습니다. 또한 홈페이지의 사각형을 클릭시 예시 페이지로 이동합니다.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### 로그인 및 회원가입
 
-### `npm run build`
+firebase의 authentication을 사용하여 이메일 및 비밀번호 로그인 및 회원가입을 지원하고 있습니다. (테스트 목적으로 이메일 test@test.com 및 비밀번호 testing을 등록해두었습니다.)
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### 예시 페이지
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+문장을 단어별로 map해서 hover시 색이 변화하는 효과를 주었습니다.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### 사이드메뉴 (로그인시)
 
-### `npm run eject`
+- Home & Sample1 & Sample2
+  홈페이지로 이동합니다
+- Community
+  커뮤니티 페이지로 이동합니다.
+- Sign out
+  로그아웃 됩니다.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+### 커뮤니티 페이지
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+firebase의 realtime database및 axios를 활용하여 CRUD시스템을 구축하였으며, 게시물의 수가 많아지면 10개씩 끊어서 pagination되게 하였으며, 우측상단의 검색 기능을 통해 제목 관련한 검색 또한 사용 가능합니다.
