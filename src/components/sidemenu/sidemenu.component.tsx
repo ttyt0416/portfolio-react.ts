@@ -11,18 +11,13 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTimes, faBars } from "@fortawesome/free-solid-svg-icons";
 
 interface ForAuth {
-  refreshUser: any;
   isLoggedIn: boolean;
-  userObj: any;
 }
 
-const Sidemenu: React.FC<ForAuth> = ({
-  refreshUser,
-  isLoggedIn,
-  userObj,
-}: any) => {
+const Sidemenu: React.FC<ForAuth> = ({ isLoggedIn }: any) => {
   const [toggle, setToggle] = useState<boolean>(false);
 
+  // function for toggle menu
   const menuToggle = () => {
     setToggle(!toggle);
   };

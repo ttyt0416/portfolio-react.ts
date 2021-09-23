@@ -18,6 +18,7 @@ const Communitypage: React.FC = () => {
   const classSelected = "community__pagination-selected";
   const classPagination = document.querySelectorAll(".community__pagination");
 
+  //function for get data of searchbox when it changes
   const onChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const {
       target: { value },
@@ -29,10 +30,12 @@ const Communitypage: React.FC = () => {
   //   setSearch(searching);
   // };
 
+  //function that transport data searchbox to firebase realtime database to search by title
   const onButtonClick = () => {
     setSearch(searching);
   };
 
+  //function for get data from firebase realtime database
   const GetData = async () => {
     const response = await axios.get(
       "https://reactts1-26838-default-rtdb.firebaseio.com/posts.json"
@@ -40,6 +43,7 @@ const Communitypage: React.FC = () => {
 
     const titleResponse = Object.keys(response.data);
 
+    // when click search button, search data by title from firebase realtime database
     if (search !== "") {
       for (let i = 0; i < Object.values(response.data).length; i++) {
         const titleSearch = await axios.get(
@@ -50,6 +54,8 @@ const Communitypage: React.FC = () => {
         const titleData = titleObject === undefined ? null : titleObject.title;
         titles.push(titleData);
       }
+
+      // if search value is empty or search ends get all data from firebase realtime database
     } else if (search === "") {
       for (
         let i = page * 10 - 10;
@@ -67,6 +73,7 @@ const Communitypage: React.FC = () => {
     setTitleArr(titles);
   };
 
+  //function for make pagination buttons
   const Buttons = (number: number) => {
     const pagination = [];
     for (let i = 1; i <= number; i++) {
@@ -87,6 +94,7 @@ const Communitypage: React.FC = () => {
     return pagination;
   };
 
+  //function that change color of selected pagination button to red
   const onClick = (event: any) => {
     const {
       target: { value },
@@ -98,6 +106,7 @@ const Communitypage: React.FC = () => {
     setPage(value);
   };
 
+  //use GetDatafunction everytime when data of search changes
   useEffect(() => {
     GetData();
   }, [search]);

@@ -13,6 +13,7 @@ const Postpage: React.FC<userInfo> = (uid) => {
   const [title, setTitle] = useState<string>("");
   const [text, setText] = useState<string>("");
 
+  // function to get data when value of title or text changes
   const onChange = (
     event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
@@ -26,6 +27,7 @@ const Postpage: React.FC<userInfo> = (uid) => {
     }
   };
 
+  // function active when click POST button, post request of posting to firebase realtime database
   const onSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
     const body: {} = {

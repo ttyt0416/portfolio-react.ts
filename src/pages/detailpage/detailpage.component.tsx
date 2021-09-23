@@ -7,6 +7,7 @@ import axios from "axios";
 import { faTrash, faEdit } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
+//for identify user is writer of this post or not
 interface userInfo {
   uid: string;
 }
@@ -21,6 +22,7 @@ const Detailpage: React.FC<userInfo> = (uid) => {
   const [editTitle, setEditTitle] = useState<string>(title);
   const [editDetail, setEditDetail] = useState<string>(detail);
 
+  // get detailed data from firebase realtime database when click title from community page
   const GetData = async () => {
     const response = await axios.get(
       `https://reactts1-26838-default-rtdb.firebaseio.com/posts.json?orderBy="title"&equalTo="${pathname}"`
@@ -32,6 +34,7 @@ const Detailpage: React.FC<userInfo> = (uid) => {
     return responseObject;
   };
 
+  // DeleteData and EditData is useable when user is writer
   const DeleteData = async () => {
     const response = await axios.get(
       `https://reactts1-26838-default-rtdb.firebaseio.com/posts.json?orderBy="title"&equalTo="${pathname}"`
@@ -67,10 +70,12 @@ const Detailpage: React.FC<userInfo> = (uid) => {
     history.push("/community");
   };
 
+  // when edit mode change to non-edit mode, when non-edit mode, change to edit mode
   const toggleEdit = () => {
     setEdit(!edit);
   };
 
+  // get data when edit title or detail changes
   const onChange = (
     event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
@@ -84,6 +89,7 @@ const Detailpage: React.FC<userInfo> = (uid) => {
     }
   };
 
+  // load data when page is loaded
   useEffect(() => {
     GetData();
   }, []);

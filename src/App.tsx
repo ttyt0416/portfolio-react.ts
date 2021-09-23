@@ -16,6 +16,7 @@ import Footer from "./components/footer/footer.component";
 import Sidemenu from "./components/sidemenu/sidemenu.component";
 
 const App: React.FC = () => {
+  //adding auth service from firebase authentication
   const [init, setInit] = useState(false);
   const [userObj, setUserObj] = useState<null | {
     displayName: string | null;
@@ -45,14 +46,11 @@ const App: React.FC = () => {
     <div className="app">
       {/* <div className="app__container"> */}
       <Homelink />
-      <Sidemenu
-        refreshUser={refreshUser}
-        isLoggedIn={Boolean(userObj)}
-        userObj={userObj}
-      />
+      <Sidemenu isLoggedIn={Boolean(userObj)} />
       <Switch>
         <Route exact path="/" component={Homepage} />
         <Route exact path="/example" component={Examplepage} />
+        {/* if user is not logged in*/}
         {userObj === null ? (
           <>
             <Route path="/community">
@@ -65,6 +63,7 @@ const App: React.FC = () => {
           </>
         ) : (
           <>
+            {/* if user is logged in*/}
             <Route exact path="/community" component={Communitypage} />
             <Route path="/community/:id">
               <Detailpage uid={userObj.uid!} />
@@ -78,10 +77,7 @@ const App: React.FC = () => {
           </>
         )}
       </Switch>
-      {/* </div> */}
-      {/* <div className="app__footer"> */}
       <Footer />
-      {/* </div> */}
     </div>
   );
 };

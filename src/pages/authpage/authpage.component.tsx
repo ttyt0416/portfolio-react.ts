@@ -9,6 +9,7 @@ const Authpage: React.FC = () => {
   const [signupEmail, setSignupEmail] = useState<string>("");
   const [signupPassword, setSignupPassword] = useState<string>("");
 
+  //function for when data of sign in or sign up change
   const onChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const {
       target: { name, value },
@@ -24,6 +25,7 @@ const Authpage: React.FC = () => {
     }
   };
 
+  //function for when click Signin or Signup button
   const onSubmit = async (event: any) => {
     event.preventDefault();
     try {
